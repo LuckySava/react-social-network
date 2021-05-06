@@ -1,0 +1,22 @@
+.single_post {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+
+    img {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+    }
+
+    .message {
+        font-weight: bold;
+        color: rgb(149, 28, 219);
+        margin-left: 20px;
+    }
+
+}
+
+.like_counter {
+    color: tomato;
+}

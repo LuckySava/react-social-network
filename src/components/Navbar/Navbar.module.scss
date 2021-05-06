@@ -1,0 +1,35 @@
+
+.nav {
+    grid-area: nav;
+    background-color: rgb(124, 197, 124);
+
+    ul {
+      margin-left: 0;
+      padding-left: 15px;
+    }
+
+    li {
+      list-style: none;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-top: 30px;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color:white;
+    }
+
+    .item {
+      font-weight: bold;
+    }
+
+    .active a {
+      color: blue;
+    }
+
+  }
+
+ 
