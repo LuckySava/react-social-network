@@ -5,24 +5,24 @@ const Navbar = () => {
     return (
         <nav className={s.nav}>
             <ul>
-                <li className={`${s.item} ${s.active}`}>
-                    <NavLink to="/profile">Profile</NavLink>
+                <li className={`${s.item}`}>
+                    <NavLink to="/profile" activeClassName={s.active}>Profile</NavLink>
                 </li>
                 
-                <li>
-                    <NavLink to="/dialogs">Messages</NavLink>
+                <li className={`${s.item}`}>
+                    <NavLink to="/dialogs" activeClassName={s.active}>Messages</NavLink>
                 </li>
 
-                <li>
-                    <NavLink to="/news">News</NavLink>
+                <li className={`${s.item}`}>
+                    <NavLink to="/news" activeClassName={s.active}>News</NavLink>
                 </li>
 
-                <li>
-                    <NavLink to="music">Music</NavLink>
+                <li className={`${s.item}`}>
+                    <NavLink to="music" activeClassName={s.active}>Music</NavLink>
                 </li>
 
-                <li>
-                    <NavLink to="settings">Settings</NavLink>
+                <li className={`${s.item}`}>
+                    <NavLink to="settings" activeClassName={s.active}>Settings</NavLink>
                 </li>
             </ul>
         </nav>

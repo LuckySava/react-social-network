@@ -1,0 +1,33 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+}
+
+.dialogs_items {
+    ul {
+        margin: 0;
+        list-style: none;
+        padding-left: 0;
+    }
+}
+
+.dialog {
+
+
+    a {
+        text-decoration: none;
+        &.active {
+            color: tomato;
+            font-weight: bold;
+        }
+    }
+}
+
+.messages {
+
+}
+
+.message {
+
+}
+

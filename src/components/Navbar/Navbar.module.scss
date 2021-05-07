@@ -17,19 +17,14 @@
       }
     }
 
-    a {
+    .item a {
       text-decoration: none;
       color:white;
-    }
 
-    .item {
-      font-weight: bold;
-    }
-
-    .active a {
-      color: blue;
+      &.active {
+        color: blue;
+      }
     }
 
   }
-
  
