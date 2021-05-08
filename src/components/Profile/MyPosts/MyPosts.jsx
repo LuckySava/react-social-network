@@ -1,26 +1,9 @@
 import s from './MyPosts.module.scss';
 import Post from './Post/Posts';
 
-const MyPosts = () => {
-    let posts = [
-        {
-            id: 1,
-            message: 'Hi, how are you',
-            likesCounter: 15,
-        },
-        {
-            id: 1,
-            message: 'it\'s my first post here',
-            likesCounter: 42,
-        },
-        {
-            id: 1,
-            message: 'whorray',
-            likesCounter: 8,
-        },
-    ];
+const MyPosts = (props) => {
 
-    let postsElements = posts.map(item => <Post message={item.message} likeCounter={item.likesCounter} />);
+    let postsElements = props.posts.map(item => <Post message={item.message} likeCounter={item.likesCounter} />);
     return (
         <div>
             <div className={s.new_post}>
