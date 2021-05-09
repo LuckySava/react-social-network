@@ -2,10 +2,11 @@
 .nav {
     grid-area: nav;
     background-color: rgb(124, 197, 124);
+    padding: 15px;
 
     ul {
       margin-left: 0;
-      padding-left: 15px;
+      padding-left: 0;
     }
 
     li {
@@ -26,5 +27,16 @@
       }
     }
 
+  }
+
+  .friend_title {
+    font-size: 25px;
+    color: white;
+  }
+
+  .friends_block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
   }
  
