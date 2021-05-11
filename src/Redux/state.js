@@ -1,4 +1,6 @@
-let state = {
+import { rerenderAllTree } from "../render"
+
+export let state = {
     dialogsPage: {
         messages: [
             {
@@ -99,10 +101,19 @@ let state = {
             {
                 id: 4,
                 avatar: 'https://image.flaticon.com/icons/png/512/62/62839.png',
-                name: 'Lana'
+                name: 'nVera'
             }
         ]
     }
 
 }
-export default state;
+
+export let addNewPost = (post) => {
+    let newPost ={
+        id: 5,
+        message: post,
+        likesCounter: 0
+    }
+    state.profilePage.posts.push(newPost)
+    rerenderAllTree(state)
+}
