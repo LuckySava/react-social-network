@@ -1,4 +1,8 @@
-import { rerenderAllTree } from "../render"
+// import { rerenderAllTree } from "../render"
+
+let rerenderAllTree = () => {
+    console.log('state was changed');
+}
 
 export let state = {
     dialogsPage: {
@@ -110,8 +114,8 @@ export let state = {
 
 }
 
-export let addNewPost = () => {
-    let newPost ={
+export const addNewPost = () => {
+    let newPost = {
         id: 5,
         message: state.profilePage.newPostText,
         likesCounter: 0
@@ -122,7 +126,7 @@ export let addNewPost = () => {
 
 }
 
-export let addNewMessage = () => {
+export const addNewMessage = () => {
 
     let newMessage = {
         id: 1,
@@ -136,12 +140,17 @@ export let addNewMessage = () => {
 
 }
 
-export let updateNewPostText = (newText) => {
+export const updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
     rerenderAllTree(state)
 }
 
-export let updateNewMessageText = (newText) => {
+export const updateNewMessageText = (newText) => {
     state.dialogsPage.newMessageText = newText;
     rerenderAllTree(state)
+}
+
+
+export const subscriber = (observer) => {
+    rerenderAllTree = observer;
 }
