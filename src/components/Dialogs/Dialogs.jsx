@@ -6,13 +6,20 @@ import DialogItem from './Dialogitem/Dialogitem'
 
 const Dialogs = (props) => {
 
-    let dialogsElementes = props.state.dialogs.map(item => <DialogItem name={item.name} id={item.id} />);
-    let messagesElementes = props.state.messages.map(item => <Message message={item.message} />);
+    let dialogsElementes = props.dialogsPage.dialogs.map(item => <DialogItem name={item.name} id={item.id} />);
+    let messagesElementes = props.dialogsPage.messages.map(item => <Message message={item.message} />);
+
 
     let textAreaElemen = React.createRef();
+
     let addMessage = () => {
+        props.addNewMessage();
+    }
+
+    let changeMessageText = () => {
         let text = textAreaElemen.current.value;
         console.log(text);
+        props.updateNewMessageText(text)
     }
 
 
@@ -28,7 +35,7 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {messagesElementes}
 
-                <textarea ref={textAreaElemen} name="" id="" cols="30" rows="10"></textarea>
+                <textarea onChange={changeMessageText} value={props.dialogsPage.newMessageText} ref={textAreaElemen} name="" id="" cols="30" rows="10"></textarea>
                 <p><button onClick={addMessage}>Add message</button></p>
             </div>
 
