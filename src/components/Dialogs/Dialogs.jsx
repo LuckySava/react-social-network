@@ -3,6 +3,8 @@ import s from './Dialogs.module.scss'
 import React from 'react'
 import Message from './Message/Message'
 import DialogItem from './Dialogitem/Dialogitem'
+import { addMessageActionCreator, updateMessageActionCreator } from '../../Redux/state'
+
 
 const Dialogs = (props) => {
 
@@ -13,15 +15,12 @@ const Dialogs = (props) => {
     let textAreaElemen = React.createRef();
 
     let addMessage = () => {
-        props.dispatch({type: 'ADD-MESSAGE'});
-        // props.addNewMessage();
+        props.dispatch(addMessageActionCreator());
     }
 
     let changeMessageText = () => {
         let text = textAreaElemen.current.value;
-        let action = {type: 'UPDATE-MESSAGE', newText: text}
-        props.dispatch(action)
-        // props.updateNewMessageText(text)
+        props.dispatch(updateMessageActionCreator(text))
     }
 
 

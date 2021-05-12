@@ -1,4 +1,9 @@
-// import { rerenderAllTree } from "../render"
+const ACTIONS = {
+    'addPost': 'ADD-POST',
+    'addMessage': 'ADD-MESSAGE',
+    'updatePost': 'UPDATE-POST',
+    'updateMessage': 'UPDATE-MESSAGE',
+}
 
 let store = {
     _state: {
@@ -124,7 +129,7 @@ let store = {
 
     dispatch(action) {
         switch (action.type) {
-            case 'ADD-POST':
+            case ACTIONS.addPost:
                 let newPost = {
                     id: 5,
                     message: this._state.profilePage.newPostText,
@@ -134,32 +139,40 @@ let store = {
                 this._state.profilePage.newPostText = '';
                 this._callSubscriber(this._state)
                 break;
-            case "ADD-MESSAGE":
+            case ACTIONS.addMessage:
                 let newMessage = {
                     id: 1,
                     message: this._state.dialogsPage.newMessageText
                 };
-        
+
                 this._state.dialogsPage.messages.push(newMessage);
                 this._state.dialogsPage.newMessageText = '';
-        
+
                 this._callSubscriber(this._state)
                 break;
-            case 'UPDATE-POST':
+            case ACTIONS.updatePost:
                 this._state.profilePage.newPostText = action.newText;
                 this._callSubscriber(this._state)
                 break;
-            case 'UPDATE-MESSAGE':
+            case ACTIONS.updateMessage:
                 this._state.dialogsPage.newMessageText = action.newText;
                 this._callSubscriber(this._state)
                 break;
             default:
-                alert("Нет таких значений");
+                alert("Invalid type");
         }
     }
-
-
-
 }
+
+export const addPostActionCreator = () => ({ type: ACTIONS.addPost });
+export const postChangeActionCreator = (text) => ({
+    type: ACTIONS.updatePost,
+    newText: text
+})
+export const addMessageActionCreator = () => ({ type: ACTIONS.addMessage });
+export const updateMessageActionCreator = (text) => ({
+    type: ACTIONS.updateMessage,
+    newText: text
+})
 
 export default store;
