@@ -3,7 +3,7 @@ import MyPosts from './MyPosts/MyPosts';
 import Profileinfo from './Profileinfo/Profileinfo';
 
 const Profile = (props) => {
-    
+    console.log('profile', props);
     return (
         <div>
             <Profileinfo />

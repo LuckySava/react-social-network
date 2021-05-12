@@ -10,7 +10,7 @@ import { BrowserRouter, Route, Router } from 'react-router-dom';
 
 const App = (props) => {
 
-// console.log("props", props);
+console.log("props", props);
     return (
         <BrowserRouter>
             <div className="app-wrapper">

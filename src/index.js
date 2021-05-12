@@ -1,11 +1,9 @@
 import reportWebVitals from './reportWebVitals';
-// import { rerenderAllTree } from './render';
-import { state, subscriber } from './Redux/state';
+import store from './Redux/state';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addNewPost, updateNewPostText, updateNewMessageText, addNewMessage} from './Redux/state';
 import { BrowserRouter } from 'react-router-dom';
 
 export let rerenderAllTree = (state) => {
@@ -16,10 +14,10 @@ export let rerenderAllTree = (state) => {
   
         <App 
         state={state} 
-        addNewPost={addNewPost} 
-        updateNewPostText={updateNewPostText}
-        updateNewMessageText={updateNewMessageText}
-        addNewMessage = {addNewMessage}
+        addNewPost={store.addNewPost.bind(store)} 
+        updateNewPostText={store.updateNewPostText.bind(store)}
+        updateNewMessageText={store.updateNewMessageText.bind(store)}
+        addNewMessage = {store.addNewMessage.bind(store)}
          />
 
   
@@ -30,9 +28,9 @@ export let rerenderAllTree = (state) => {
 }
 
 
-rerenderAllTree(state);
+rerenderAllTree(store.getState());
 
-subscriber(rerenderAllTree)
+store.subscriber(rerenderAllTree)
 
 
 // If you want to start measuring performance in your app, pass a function
