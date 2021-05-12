@@ -110,49 +110,56 @@ let store = {
         }
     },
 
-    getState(){
+    _callSubscriber() {
+        console.log('state was changed');
+    },
+
+    getState() {
         return this._state;
     },
 
-    addNewMessage() {
-        let newMessage = {
-            id: 1,
-            message: this._state.dialogsPage.newMessageText
-        };
-
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = '';
-
-        this.callSubscriber(this._state)
-    },
-
-    addNewPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCounter: 0
-        }
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this.callSubscriber(this._state)
-    },
-
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this.callSubscriber(this._state)
-    },
-
-    updateNewMessageText(newText) {
-        this._state.dialogsPage.newMessageText = newText;
-        this.callSubscriber(this._state)
-    },
-
-    callSubscriber() {
-        console.log('state was changed');
-    },
     subscriber(observer) {
-        this.callSubscriber = observer;
+        this._callSubscriber = observer;
     },
+
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                let newPost = {
+                    id: 5,
+                    message: this._state.profilePage.newPostText,
+                    likesCounter: 0
+                }
+                this._state.profilePage.posts.push(newPost);
+                this._state.profilePage.newPostText = '';
+                this._callSubscriber(this._state)
+                break;
+            case "ADD-MESSAGE":
+                let newMessage = {
+                    id: 1,
+                    message: this._state.dialogsPage.newMessageText
+                };
+        
+                this._state.dialogsPage.messages.push(newMessage);
+                this._state.dialogsPage.newMessageText = '';
+        
+                this._callSubscriber(this._state)
+                break;
+            case 'UPDATE-POST':
+                this._state.profilePage.newPostText = action.newText;
+                this._callSubscriber(this._state)
+                break;
+            case 'UPDATE-MESSAGE':
+                this._state.dialogsPage.newMessageText = action.newText;
+                this._callSubscriber(this._state)
+                break;
+            default:
+                alert("Нет таких значений");
+        }
+    }
+
+
+
 }
 
 export default store;

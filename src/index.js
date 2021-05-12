@@ -14,10 +14,11 @@ export let rerenderAllTree = (state) => {
   
         <App 
         state={state} 
-        addNewPost={store.addNewPost.bind(store)} 
-        updateNewPostText={store.updateNewPostText.bind(store)}
-        updateNewMessageText={store.updateNewMessageText.bind(store)}
-        addNewMessage = {store.addNewMessage.bind(store)}
+        dispatch={store.dispatch.bind(store)} 
+        // addNewPost={store.addNewPost.bind(store)} 
+        // updateNewPostText={store.updateNewPostText.bind(store)}
+        // updateNewMessageText={store.updateNewMessageText.bind(store)}
+        // addNewMessage = {store.addNewMessage.bind(store)}
          />
 
   
