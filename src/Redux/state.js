@@ -1,4 +1,4 @@
-import ACTIONS from "./actions";
+// import ACTIONS from "./actions";
 import dialogReducer from "./dialogs-reducer";
 import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
@@ -135,15 +135,5 @@ let store = {
 }
 
 
-export const addPostActionCreator = () => ({ type: ACTIONS.addPost });
-export const postChangeActionCreator = (text) => ({
-    type: ACTIONS.updatePost,
-    newText: text
-});
-export const addMessageActionCreator = () => ({ type: ACTIONS.addMessage });
-export const updateMessageActionCreator = (text) => ({
-    type: ACTIONS.updateMessage,
-    newText: text
-});
 
 export default store;
