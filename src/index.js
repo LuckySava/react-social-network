@@ -1,5 +1,5 @@
 import reportWebVitals from './reportWebVitals';
-import store from './Redux/state';
+import store from './Redux/redux-store';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -20,17 +20,18 @@ export let rerenderAllTree = (state) => {
         store={store}
          />
 
-  
       </React.StrictMode>
     </BrowserRouter>,
     document.getElementById('root')
   );
 }
 
-
 rerenderAllTree(store.getState());
 
-store.subscriber(rerenderAllTree)
+store.subscribe(() => {
+  let state = store.getState();
+  rerenderAllTree(state)
+})
 
 
 // If you want to start measuring performance in your app, pass a function
