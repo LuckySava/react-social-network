@@ -1,9 +1,7 @@
-const ACTIONS = {
-    'addPost': 'ADD-POST',
-    'addMessage': 'ADD-MESSAGE',
-    'updatePost': 'UPDATE-POST',
-    'updateMessage': 'UPDATE-MESSAGE',
-}
+import ACTIONS from "./actions";
+import dialogReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 let store = {
     _state: {
@@ -128,41 +126,14 @@ let store = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case ACTIONS.addPost:
-                let newPost = {
-                    id: 5,
-                    message: this._state.profilePage.newPostText,
-                    likesCounter: 0
-                }
-                this._state.profilePage.posts.push(newPost);
-                this._state.profilePage.newPostText = '';
-                this._callSubscriber(this._state)
-                break;
-            case ACTIONS.addMessage:
-                let newMessage = {
-                    id: 1,
-                    message: this._state.dialogsPage.newMessageText
-                };
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-                this._state.dialogsPage.messages.push(newMessage);
-                this._state.dialogsPage.newMessageText = '';
-
-                this._callSubscriber(this._state)
-                break;
-            case ACTIONS.updatePost:
-                this._state.profilePage.newPostText = action.newText;
-                this._callSubscriber(this._state)
-                break;
-            case ACTIONS.updateMessage:
-                this._state.dialogsPage.newMessageText = action.newText;
-                this._callSubscriber(this._state)
-                break;
-            default:
-                alert("Invalid type");
-        }
+        this._callSubscriber(this._state)
     }
 }
+
 
 export const addPostActionCreator = () => ({ type: ACTIONS.addPost });
 export const postChangeActionCreator = (text) => ({
