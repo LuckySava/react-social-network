@@ -8,17 +8,16 @@ import { BrowserRouter } from 'react-router-dom';
 
 export let rerenderAllTree = (state) => {
 
+  console.log('Index', store);
+
   ReactDOM.render(
     <BrowserRouter >
       <React.StrictMode>
   
         <App 
         state={state} 
-        dispatch={store.dispatch.bind(store)} 
-        // addNewPost={store.addNewPost.bind(store)} 
-        // updateNewPostText={store.updateNewPostText.bind(store)}
-        // updateNewMessageText={store.updateNewMessageText.bind(store)}
-        // addNewMessage = {store.addNewMessage.bind(store)}
+        dispatch={store.dispatch.bind(store)}
+        store={store}
          />
 
   

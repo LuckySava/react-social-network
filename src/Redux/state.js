@@ -62,7 +62,7 @@ let store = {
                     name: 'Lana'
                 }
             ],
-            _newMessageText: '222',
+            newMessageText: '44',
         },
         profilePage: {
             posts: [
@@ -168,11 +168,11 @@ export const addPostActionCreator = () => ({ type: ACTIONS.addPost });
 export const postChangeActionCreator = (text) => ({
     type: ACTIONS.updatePost,
     newText: text
-})
+});
 export const addMessageActionCreator = () => ({ type: ACTIONS.addMessage });
 export const updateMessageActionCreator = (text) => ({
     type: ACTIONS.updateMessage,
     newText: text
-})
+});
 
 export default store;
