@@ -13,18 +13,13 @@ const Dialogs = (props) => {
     let dialogsElementes = props.state.dialogs.map(item => <DialogItem name={item.name} id={item.id} />);
     let messagesElementes = props.state.messages.map(item => <Message message={item.message} />);
 
-
-    // let textAreaElemen = React.createRef();
-
     let addMessage = () => {
         props.addMessage();
-        // props.dispatch(addMessageActionCreator());
     }
 
     let changeMessageText = (e) => {
         let text = e.target.value;
         props.changeMessageText(text)
-        // props.dispatch(updateMessageActionCreator(text))
     }
 
 
