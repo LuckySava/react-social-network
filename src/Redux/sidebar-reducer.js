@@ -9,12 +9,12 @@ let initialState =  {
         },
         {
             id: 2,
-            avatar: 'https://cdn.icon-icons.com/icons2/933/PNG/512/emoticon-with-happy-face_icon-icons.com_72768.png',
+            avatar: 'https://cdn.icon-icons.com/icons2/2248/PNG/512/face_icon_137648.png',
             name: 'Olga'
         },
         {
             id: 3,
-            avatar: 'https://cdn.icon-icons.com/icons2/1862/PNG/512/childheadwithsmilingface_118426.png',
+            avatar: 'https://cdn.icon-icons.com/icons2/933/PNG/512/emoticon-with-happy-face_icon-icons.com_72768.png',
             name: 'Lana'
         },
         {

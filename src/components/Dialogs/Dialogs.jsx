@@ -10,21 +10,21 @@ const Dialogs = (props) => {
 
     console.log('Dialogs', props);
 
-    let state = props.store.getState().dialogsPage;
-
-    let dialogsElementes = state.dialogs.map(item => <DialogItem name={item.name} id={item.id} />);
-    let messagesElementes = state.messages.map(item => <Message message={item.message} />);
+    let dialogsElementes = props.state.dialogs.map(item => <DialogItem name={item.name} id={item.id} />);
+    let messagesElementes = props.state.messages.map(item => <Message message={item.message} />);
 
 
     // let textAreaElemen = React.createRef();
 
     let addMessage = () => {
-        props.dispatch(addMessageActionCreator());
+        props.addMessage();
+        // props.dispatch(addMessageActionCreator());
     }
 
     let changeMessageText = (e) => {
         let text = e.target.value;
-        props.dispatch(updateMessageActionCreator(text))
+        props.changeMessageText(text)
+        // props.dispatch(updateMessageActionCreator(text))
     }
 
 
@@ -43,8 +43,7 @@ const Dialogs = (props) => {
                     <textarea
                     placeholder='Enter your msg'
                     onChange={changeMessageText}
-                    value={state.newMessageText}
-                    // ref={textAreaElemen}
+                    value={props.state.newMessageText}
                     name="" id="" cols="30" rows="10" />
                     <p><button onClick={addMessage}>Add message</button></p>
                 </div>
