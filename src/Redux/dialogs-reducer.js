@@ -60,25 +60,30 @@ let ininialState = {
 
 const dialogReducer = (state = ininialState, action) => {
 
+    // let stateCopy;
+
     switch (action.type) {
         case ACTIONS.addMessage:
-            let newMessage = {
-                id: 1,
-                message: state.newMessageText
-            };
 
-            state.messages.push(newMessage);
-            state.newMessageText = '';
-            break;
+        let body = state.newMessageText;
+
+            return { 
+                ...state,
+                messages: [...state.messages,  {id: 1,message: body}],
+                newMessageText : '',
+             };
+
         case ACTIONS.updateMessage:
-            state.newMessageText = action.newText;
-    
-            break;
+            return {
+                ...state,
+                newMessageText: action.newText
+             };
+
         default:
             console.log('Error Action Type');
+            return state;
     }
 
-    return state;
 }
 
 export const addMessageActionCreator = () => ({ type: ACTIONS.addMessage });

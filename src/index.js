@@ -7,33 +7,19 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+ReactDOM.render(
+  <BrowserRouter >
+    <React.StrictMode>
+      <Provider store={store}>
 
-export let rerenderAllTree = (state) => {
+        <App />
 
-  console.log('Index', store);
+      </Provider>
 
-  ReactDOM.render(
-    <BrowserRouter >
-      <React.StrictMode>
-        <Provider store={store}>
-
-          <App/>
-
-        </Provider>
-
-      </React.StrictMode>
-    </BrowserRouter>,
-    document.getElementById('root')
-  );
-}
-
-rerenderAllTree(store.getState());
-
-store.subscribe(() => {
-  // let state = store.getState();
-  // rerenderAllTree(state)
-  rerenderAllTree()
-})
+    </React.StrictMode>
+  </BrowserRouter>,
+  document.getElementById('root')
+);
 
 
 // If you want to start measuring performance in your app, pass a function
