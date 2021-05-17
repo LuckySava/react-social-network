@@ -80,7 +80,7 @@ const dialogReducer = (state = ininialState, action) => {
              };
 
         default:
-            console.log('Error Action Type');
+            console.log('Error Action Type dialogReducer');
             return state;
     }
 

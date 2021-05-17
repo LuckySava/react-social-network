@@ -3,6 +3,9 @@ const ACTIONS = {
     'addMessage': 'ADD-MESSAGE',
     'updatePost': 'UPDATE-POST',
     'updateMessage': 'UPDATE-MESSAGE',
+    'follow': 'FOLLOW',
+    'unfollow': 'UNFOLLOW',
+    'setUsers': 'SET-USERS',
 }
 
 export default ACTIONS;

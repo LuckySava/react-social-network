@@ -1,0 +1,79 @@
+.users {
+    background: rgb(255, 242, 226);
+    padding: 10px;
+    width: 100%;
+}
+
+
+.user {
+    display: flex;
+    padding: 10px;
+    border: 1px solid brown;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    width: 100%;
+
+}
+
+.avatar {
+    width: calc(30% - 10px);
+    text-align: center;
+    padding: 15px;
+    background-color:gainsboro;
+    border-radius: 15px;
+    margin-right: 10px;
+
+    img {
+        width: 75px;
+        max-height: 85px;
+    }
+
+    .follow_btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.user_info {
+    width: 100%;
+    margin-left: 10px;
+    background: gainsboro;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.follow_btn {
+    background: #fff;
+    outline: none;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 15px;
+    margin-top: 10px;
+    transition: .3s;
+    cursor: pointer;
+    &:hover {
+        opacity: 0.7;
+        background: khaki;
+    }
+}
+
+.show_more_wrap {
+    text-align: center;
+}
+
+.show_more_btn {
+    padding: 5px 15px;
+    background-color: rgb(58, 156, 88);
+    font-style: 25px;
+    border-radius: 15px;
+    color: white;
+    transition: .4s;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .7;
+    }
+}
