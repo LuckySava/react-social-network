@@ -1,7 +1,7 @@
 import ACTION from './actions';
 
 let initialState = {
-    users: [ ]
+    users: []
 }
 
 
