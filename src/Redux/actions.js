@@ -6,6 +6,8 @@ const ACTIONS = {
     'follow': 'FOLLOW',
     'unfollow': 'UNFOLLOW',
     'setUsers': 'SET-USERS',
+    'setCurrentPage': 'SET-CURRENT-PAGE',
+    'setUsersCount': 'SET-USERS-COUNT',
 }
 
 export default ACTIONS;

@@ -77,3 +77,28 @@
         opacity: .7;
     }
 }
+
+.pages {
+    display: flex;
+    flex-wrap: wrap;
+
+    span {
+        margin: 3px;
+        font-size: 20px;
+        background-color: rgb(177, 177, 177);
+        color: white;
+        padding: 3px 8px;
+        cursor: pointer;
+        transition: .3s;
+        min-width: 38px;
+        text-align: center;
+        &:hover {
+            opacity: .7;
+        }
+    }
+
+    .selectedPage {
+        color: tomato;
+    }
+}
+
