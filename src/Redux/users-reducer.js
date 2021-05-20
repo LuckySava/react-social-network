@@ -5,6 +5,7 @@ let initialState = {
     pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: true,
 }
 
 
@@ -51,6 +52,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 totalUsersCount: action.totalUserCount
             }
+        case ACTION.toggleIsFetching:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
 
 
         default:
@@ -64,6 +70,7 @@ export let unFollowAC = (userID) => ({ type: ACTION.unfollow, userID });
 export let setUsersAC = (users) => ({ type: ACTION.setUsers, users });
 export let setCurrentPageAC = (currentPage) => ({ type: ACTION.setCurrentPage, currentPage });
 export let setTotalUserCountAC = (totalUserCount) => ({ type: ACTION.setUsersCount, totalUserCount });
+export let checkIsFetchingAC = (isFetching) => ({ type: ACTION.toggleIsFetching, isFetching });
 
 
 export default userReducer;
