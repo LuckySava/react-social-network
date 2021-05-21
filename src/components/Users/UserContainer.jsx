@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
-import { followAC, setUsersAC, setTotalUserCountAC, setCurrentPageAC, unFollowAC, checkIsFetchingAC } from "../../Redux/users-reducer";
+import { follow, setUsers, setUsersCout, setCurrentPage, unFollow, checkIsFetching } from "../../Redux/users-reducer";
 import Users from "./Users";
-import spinner from '../../assets/images/spinner.svg'
-import s from './Users.module.scss'
+// import spinner from '../../assets/images/spinner.svg'
+// import s from './Users.module.scss'
 import Preloader from '../Common/Preloader/preloader';
 
 
@@ -24,7 +24,7 @@ class UserContainer extends React.Component {
             .catch(error => {
                 console.log('ERROR AXIOS', error.response.data.error);
                 this.props.checkIsFetching(false);
-             })
+            })
     }
 
     componentDidUpdate() {
@@ -47,7 +47,7 @@ class UserContainer extends React.Component {
 
     render() {
         return <>
-        {this.props.isFetching ? <Preloader/> : null}
+            {this.props.isFetching ? <Preloader /> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
                 pageSize={this.props.pageSize}
                 onPageChanged={this.onPageChanged}
@@ -71,29 +71,37 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    console.log('DISPATCH', dispatch);
+// let mapDispatchToProps = (dispatch) => {
+//     console.log('DISPATCH', dispatch);
 
-    return {
-        follow: (userID) => {
-            dispatch(followAC(userID))
-        },
-        unFollow: (userID) => {
-            dispatch(unFollowAC(userID))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setUsersCout: (totalUdersCount) => {
-            dispatch(setTotalUserCountAC(totalUdersCount))
-        },
-        checkIsFetching: (fetching) => {
-            dispatch(checkIsFetchingAC(fetching))
-        }
-    }
-}
+//     return {
+//         follow: (userID) => {
+//             dispatch(followAC(userID))
+//         },
+//         unFollow: (userID) => {
+//             dispatch(unFollowAC(userID))
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCurrentPage: (currentPage) => {
+//             dispatch(setCurrentPageAC(currentPage))
+//         },
+//         setUsersCout: (totalUdersCount) => {
+//             dispatch(setTotalUserCountAC(totalUdersCount))
+//         },
+//         checkIsFetching: (fetching) => {
+//             dispatch(checkIsFetchingAC(fetching))
+//         }
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserContainer)
+export default connect(mapStateToProps,
+    {
+        follow,
+        unFollow,
+        setUsers,
+        setCurrentPage,
+        setUsersCout,
+        checkIsFetching
+    })(UserContainer)
