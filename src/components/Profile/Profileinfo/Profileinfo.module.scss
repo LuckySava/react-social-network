@@ -1,3 +1,17 @@
 .small_img {
     
 }
+
+.profile_user {
+    display: flex;
+}
+
+.user_img {
+    width: 150px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.profile_info {
+    margin-left: 25px;
+}

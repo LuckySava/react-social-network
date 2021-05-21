@@ -8,7 +8,8 @@ const ACTIONS = {
     'setUsers': 'SET-USERS',
     'setCurrentPage': 'SET-CURRENT-PAGE',
     'setUsersCount': 'SET-USERS-COUNT',
-    'toggleIsFetching': 'TOGGLE-IS-FETCHING'
+    'toggleIsFetching': 'TOGGLE-IS-FETCHING',
+    'setUserProfile': 'SET-USER-PROFILE',
 }
 
 export default ACTIONS;

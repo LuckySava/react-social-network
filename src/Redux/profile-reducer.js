@@ -24,6 +24,7 @@ let initialState = {
         },
     ],
     newPostText: 'it-kamasutra.com',
+    profile: null
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -40,7 +41,15 @@ const profileReducer = (state = initialState, action) => {
         case ACTIONS.updatePost: {
             return {
                 ...state,
-                newPostText: action.newText}
+                newPostText: action.newText
+            }
+        }
+        case ACTIONS.setUserProfile: {
+            return {
+                ...state,
+                profile: action.profile
+                
+            }
         }
 
         default:
@@ -50,12 +59,9 @@ const profileReducer = (state = initialState, action) => {
 
 }
 
-
+export const setUserProfile = (profile) => ({type: ACTIONS.setUserProfile, profile})
 export const addPostActionCreator = () => ({ type: ACTIONS.addPost });
-export const postChangeActionCreator = (text) => ({
-    type: ACTIONS.updatePost,
-    newText: text
-});
+export const postChangeActionCreator = (text) => ({type: ACTIONS.updatePost,newText: text});
 
 
 export default profileReducer;
