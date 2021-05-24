@@ -10,6 +10,7 @@ const ACTIONS = {
     'setUsersCount': 'SET-USERS-COUNT',
     'toggleIsFetching': 'TOGGLE-IS-FETCHING',
     'setUserProfile': 'SET-USER-PROFILE',
+    'setAuthUserData': 'SET-USER-DATA'
 }
 
 export default ACTIONS;

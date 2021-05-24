@@ -2,8 +2,18 @@
     grid-area: header;
     background-color: antiquewhite;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+
   }
   
   .logo {
     height: 60px;
+  }
+
+  .login_block a {
+    color: tomato;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
   }
