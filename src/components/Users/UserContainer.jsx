@@ -1,51 +1,18 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from "react-redux";
-import { follow, setUsers, setUsersCout, setCurrentPage, unFollow, checkIsFetching, checkFollowingInProgress } from "../../Redux/users-reducer";
+import { getUser, follow, unfollow, checkFollowingInProgress } from "../../Redux/users-reducer";
 import Users from "./Users";
-// import spinner from '../../assets/images/spinner.svg'
-// import s from './Users.module.scss'
 import Preloader from '../Common/Preloader/preloader';
-import { userAPI } from '../../api/api';
-
 
 class UserContainer extends React.Component {
 
     componentDidMount() {
-        console.log('USERContainer', this.props);
-        this.props.checkIsFetching(true)
-        userAPI.getUsers(this.props.currentPage,this.props.pageSize)
-            .then(data => {
-            
-                this.props.setUsers(data.items);
-
-                let userTotalCount = data.totalCount / 100;
-                this.props.setUsersCout(userTotalCount);
-
-                this.props.checkIsFetching(false)
-            })
-            // .catch(error => {
-            //     console.log('ERROR AXIOS', error.response.data.error);
-            //     this.props.checkIsFetching(false);
-            // })
-    }
-
-    componentDidUpdate() {
-        // alert('I\' am componentDidUpdate ')
+        this.props.getUser(this.props.currentPage, this.props.pageSize);
     }
 
     onPageChanged = (page) => {
-        
-        console.log('ONPAGEChange', this.props);
-        this.props.setCurrentPage(page)
 
-        this.props.checkIsFetching(true)
-
-        userAPI.getUsers(page,this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items)
-                this.props.checkIsFetching(false)
-            })
+        this.props.getUser(page, this.props.pageSize);
     }
 
     render() {
@@ -55,11 +22,10 @@ class UserContainer extends React.Component {
                 pageSize={this.props.pageSize}
                 onPageChanged={this.onPageChanged}
                 currentPage={this.props.currentPage}
-                unFollow={this.props.unFollow}
+                unfollow={this.props.unfollow}
                 follow={this.props.follow}
                 users={this.props.users}
                 isFollowFetching={this.props.followingInProgress}
-                checkFollowingInProgress={this.props.checkFollowingInProgress}
             />
         </>
     }
@@ -105,10 +71,7 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps,
     {
         follow,
-        unFollow,
-        setUsers,
-        setCurrentPage,
-        setUsersCout,
-        checkIsFetching,
-        checkFollowingInProgress
+        unfollow,
+        checkFollowingInProgress,
+        getUser,
     })(UserContainer)

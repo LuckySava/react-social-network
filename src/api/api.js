@@ -13,12 +13,12 @@ export const userAPI = {
         return instance.get(`users?page=${totalUsersCount}&count=${pageSize}`)
             .then(response => response.data)
     },
-    // unfollowUser(id) {
-    //     return instance.delete(`follow/${id}`)
-    // },
-    // followUser(id) {
-    //     return instance.post(`follow/${id}`)
-    // }
+    unfollowUser(id) {
+        return instance.delete(`follow/${id}`)
+    },
+    followUser(id) {
+        return instance.post(`follow/${id}`)
+    }
 }
 
 

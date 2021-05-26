@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Users.module.scss';
 import userPhoto from '../../assets/images/avatar.png';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { userAPI } from '../../api/api';
 
 let Users = (props) => {
 
@@ -31,58 +31,13 @@ let Users = (props) => {
                             <NavLink to={'/profile/' + user.id}><img src={user.photos.small ? user.photos.small : userPhoto} alt={user.fullName} /></NavLink>
                             {user.followed
                                 ? <button disabled={props.isFollowFetching.some(id => id === user.id)} onClick={() => {
-                                    props.checkFollowingInProgress(true, user.id)
 
-                                    console.log('CHECK BUTTON 1', props.isFollowFetching.some(id => id === user.id) );
-
-
-                                    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY" : "669bffb1-253a-4396-8da1-6301d4b07c9a"
-                                        }
-                                    }
-                                    
-                                    )
-                                    .then(response => {
-                                        if(response.data.resultCode == 0) {
-                                            props.unFollow(user.id)
-                                        }
-
-                                        props.checkFollowingInProgress(false, user.id)
-                                        console.log('CHECK BUTTON 2', props.isFollowFetching.some(id => id === user.id) );
-
-                                    })
-
+                                    props.unfollow(user.id)
 
                                 }} className={s.follow_btn}>Unfollow</button>
                                 : <button disabled={props.isFollowFetching.some(id => id === user.id)} onClick={() => {
 
-                                    props.checkFollowingInProgress(true, user.id)
-
-                                    console.log('CHECK BUTTON 3', props.isFollowFetching.some(id => id === user.id) );
-
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY" : "669bffb1-253a-4396-8da1-6301d4b07c9a"
-                                        }
-                                    })
-                                    .then(response => {
-                                        if(response.data.resultCode == 0) {
-                                            props.follow(user.id);
-                                        }
-                                        props.checkFollowingInProgress(false, user.id)
-
-                                        console.log('CHECK BUTTON 4', props.isFollowFetching.some(id => id === user.id) );
-
-                                    })
-
-
-                                    // .catch(error => {
-                                    //     console.log('ERROR AXIOS', error.response.data.messages);
-                                    // })
-                                
+                                    props.follow(user.id)
                                     
                                     }} className={s.follow_btn}>Follow</button>}
                         </div>
