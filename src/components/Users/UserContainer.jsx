@@ -1,32 +1,33 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from "react-redux";
-import { follow, setUsers, setUsersCout, setCurrentPage, unFollow, checkIsFetching } from "../../Redux/users-reducer";
+import { follow, setUsers, setUsersCout, setCurrentPage, unFollow, checkIsFetching, checkFollowingInProgress } from "../../Redux/users-reducer";
 import Users from "./Users";
 // import spinner from '../../assets/images/spinner.svg'
 // import s from './Users.module.scss'
 import Preloader from '../Common/Preloader/preloader';
+import { userAPI } from '../../api/api';
 
 
 class UserContainer extends React.Component {
 
     componentDidMount() {
+        console.log('USERContainer', this.props);
         this.props.checkIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page${this.props.totalUsersCount}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
-            .then(response => {
-                this.props.setUsers(response.data.items);
+        userAPI.getUsers(this.props.currentPage,this.props.pageSize)
+            .then(data => {
+            
+                this.props.setUsers(data.items);
 
-                let userTotalCount = response.data.totalCount / 100;
+                let userTotalCount = data.totalCount / 100;
                 this.props.setUsersCout(userTotalCount);
 
                 this.props.checkIsFetching(false)
             })
-            .catch(error => {
-                console.log('ERROR AXIOS', error.response.data.error);
-                this.props.checkIsFetching(false);
-            })
+            // .catch(error => {
+            //     console.log('ERROR AXIOS', error.response.data.error);
+            //     this.props.checkIsFetching(false);
+            // })
     }
 
     componentDidUpdate() {
@@ -34,17 +35,15 @@ class UserContainer extends React.Component {
     }
 
     onPageChanged = (page) => {
+        
+        console.log('ONPAGEChange', this.props);
         this.props.setCurrentPage(page)
 
         this.props.checkIsFetching(true)
 
-        console.log('PAGE', page);
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page${page}&count=${this.props.pageSize}`,{
-            withCredentials: true
-        })
-            .then(response => {
-                this.props.setUsers(response.data.items)
+        userAPI.getUsers(page,this.props.pageSize)
+            .then(data => {
+                this.props.setUsers(data.items)
                 this.props.checkIsFetching(false)
             })
     }
@@ -59,6 +58,8 @@ class UserContainer extends React.Component {
                 unFollow={this.props.unFollow}
                 follow={this.props.follow}
                 users={this.props.users}
+                isFollowFetching={this.props.followingInProgress}
+                checkFollowingInProgress={this.props.checkFollowingInProgress}
             />
         </>
     }
@@ -72,6 +73,7 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -107,5 +109,6 @@ export default connect(mapStateToProps,
         setUsers,
         setCurrentPage,
         setUsersCout,
-        checkIsFetching
+        checkIsFetching,
+        checkFollowingInProgress
     })(UserContainer)
