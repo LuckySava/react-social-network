@@ -1,3 +1,4 @@
+import { userAPI } from "../api/api";
 import ACTIONS from "./actions";
 
 let initialState = {
@@ -62,6 +63,17 @@ const profileReducer = (state = initialState, action) => {
 export const setUserProfile = (profile) => ({type: ACTIONS.setUserProfile, profile})
 export const addPostActionCreator = () => ({ type: ACTIONS.addPost });
 export const postChangeActionCreator = (text) => ({type: ACTIONS.updatePost,newText: text});
+
+// thunk creator
+
+export const getUserProfile = (userId) => {
+    return (dispatch) => {
+        userAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data));
+        })
+    }
+}
 
 
 export default profileReducer;
