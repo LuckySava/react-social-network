@@ -15,3 +15,11 @@
 .profile_info {
     margin-left: 25px;
 }
+
+.text_editMode {
+    cursor: pointer;
+    transition: .3s;   
+    &:hover {
+        opacity: .7;
+    }
+}
