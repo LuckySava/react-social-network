@@ -1,4 +1,4 @@
-import { userAPI } from "../api/api";
+import { profileAPI, userAPI } from "../api/api";
 import ACTIONS from "./actions";
 
 let initialState = {
@@ -25,7 +25,8 @@ let initialState = {
         },
     ],
     newPostText: 'it-kamasutra.com',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -45,6 +46,12 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: action.newText
             }
         }
+        case ACTIONS.getStatus: {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
         case ACTIONS.setUserProfile: {
             return {
                 ...state,
@@ -60,9 +67,12 @@ const profileReducer = (state = initialState, action) => {
 
 }
 
+// Action Creators
+
 export const setUserProfile = (profile) => ({type: ACTIONS.setUserProfile, profile})
 export const addPostActionCreator = () => ({ type: ACTIONS.addPost });
 export const postChangeActionCreator = (text) => ({type: ACTIONS.updatePost,newText: text});
+export const setStatus = (status) => ({type: ACTIONS.getStatus, status: status});
 
 // thunk creator
 
@@ -74,6 +84,24 @@ export const getUserProfile = (userId) => {
         })
     }
 }
+
+export const getStatus = (userId) =>(dispatch) => {
+    profileAPI.getStatus(userId)
+    .then(response => {
+        dispatch(setStatus(response.data))
+    })
+}
+
+export const updateStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status)
+    .then(response => {
+        if(response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+    })
+}
+
+
 
 
 export default profileReducer;

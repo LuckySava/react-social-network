@@ -11,7 +11,8 @@ const ACTIONS = {
     'toggleIsFetching': 'TOGGLE-IS-FETCHING',
     'setUserProfile': 'SET-USER-PROFILE',
     'setAuthUserData': 'SET-USER-DATA',
-    'isFollowFetching' : 'IS-FOLLOW-FETCHING'
+    'isFollowFetching' : 'IS-FOLLOW-FETCHING',
+    'getStatus': 'GET-STATUS',
 }
 
 export default ACTIONS;

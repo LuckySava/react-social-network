@@ -20,7 +20,7 @@ const Profileinfo = (props) => {
                 <img className={s.user_img} src={props.profile.photos.large ? props.profile.photos.large : defaultImg} alt="" />
                 <div className={s.profile_info}>
                     <h2>{props.profile.fullName}</h2>
-                    <ProfileStatus status='hello my dear friends'/>
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 </div>
             </div>
 
