@@ -24,7 +24,7 @@ let initialState = {
             likesCounter: 37,
         },
     ],
-    newPostText: 'it-kamasutra.com',
+    // newPostText: 'it-kamasutra.com',
     profile: null,
     status: ''
 }
@@ -33,19 +33,18 @@ const profileReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ACTIONS.addPost: 
-        
             return {
                 ...state,
-                posts: [...state.posts, {id: 5, message: state.newPostText, likesCounter: 0}],
+                posts: [...state.posts, {id: 5, message: action.newProfilePost, likesCounter: 0}],
                 newPostText: ''
             };
 
-        case ACTIONS.updatePost: {
-            return {
-                ...state,
-                newPostText: action.newText
-            }
-        }
+        // case ACTIONS.updatePost: {
+        //     return {
+        //         ...state,
+        //         newPostText: action.newText
+        //     }
+        // }
         case ACTIONS.getStatus: {
             return {
                 ...state,
@@ -70,7 +69,7 @@ const profileReducer = (state = initialState, action) => {
 // Action Creators
 
 export const setUserProfile = (profile) => ({type: ACTIONS.setUserProfile, profile})
-export const addPostActionCreator = () => ({ type: ACTIONS.addPost });
+export const addPostActionCreator = (newProfilePost) => ({ type: ACTIONS.addPost, newProfilePost });
 export const postChangeActionCreator = (text) => ({type: ACTIONS.updatePost,newText: text});
 export const setStatus = (status) => ({type: ACTIONS.getStatus, status: status});
 
@@ -100,7 +99,6 @@ export const updateStatus = (status) => (dispatch) => {
         }
     })
 }
-
 
 
 
