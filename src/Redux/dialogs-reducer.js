@@ -55,7 +55,7 @@ let ininialState = {
             name: 'Lana'
         }
     ],
-    newMessageText: 'type something',
+    // newMessageText: 'type something',
 }
 
 const dialogReducer = (state = ininialState, action) => {
@@ -65,18 +65,12 @@ const dialogReducer = (state = ininialState, action) => {
     switch (action.type) {
         case ACTIONS.addMessage:
 
-        let body = state.newMessageText;
+        let body = action.newMessageBody;
 
             return { 
                 ...state,
-                messages: [...state.messages,  {id: 1,message: body}],
-                newMessageText : '',
-             };
-
-        case ACTIONS.updateMessage:
-            return {
-                ...state,
-                newMessageText: action.newText
+                messages: [...state.messages,  {id: 1, message: body}],
+                // newMessageText : '',
              };
 
         default:
@@ -86,11 +80,11 @@ const dialogReducer = (state = ininialState, action) => {
 
 }
 
-export const addMessageActionCreator = () => ({ type: ACTIONS.addMessage });
-export const updateMessageActionCreator = (text) => ({
-    type: ACTIONS.updateMessage,
-    newText: text
-});
+export const addMessageActionCreator = (newMessageBody) => ({ type: ACTIONS.addMessage, newMessageBody });
+// export const updateMessageActionCreator = (text) => ({
+//     type: ACTIONS.updateMessage,
+//     newText: text
+// });
 
 
 export default dialogReducer;
