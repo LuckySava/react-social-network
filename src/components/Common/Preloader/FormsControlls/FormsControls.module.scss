@@ -1,0 +1,20 @@
+.form_control {
+
+}
+
+.form_control.error {
+    input {
+        border: 2px solid tomato;
+    }
+
+    textarea {
+        border: 2px solid tomato;
+    }
+
+
+    span {
+        color: tomato;
+        display: inline-block;
+        font-weight: bold;
+    }
+}
