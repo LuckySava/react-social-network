@@ -19,14 +19,14 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.data,
                 // isAuth: true,
-                isAuth: true,
+                // isAuth: true,
             }
         default:
             return state
     }
 }
 
-export let setUserData = (id, email, login, isAuth) => ({ type: ACTION.setAuthUserData, data: { id, email, login,isAuth } })
+export let setUserData = (id, email, login, isAuth) => ({ type: ACTION.setAuthUserData, data: { id, email, login, isAuth } })
 
 // thunk creator
 
