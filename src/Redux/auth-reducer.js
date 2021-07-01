@@ -1,5 +1,6 @@
 import { authAPI } from '../api/api';
-import ACTION from './actions'
+import ACTION from './actions';
+import {stopSubmit} from 'redux-form';
 
 console.log('ACTION', ACTION.setAuthUserData);
 
@@ -45,11 +46,16 @@ export const getAuthUserData = () => (dispatch) => {
 
 export const login = (email,password,rememberMe,) => (dispatch) => {
 
+
     return authAPI.login(email,password,rememberMe)
         .then(response => {
 
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUserData())
+            } else {
+                let errorMessage = response.data.messages.length > 0 ? response.data.messages[0] : 'Email is not valid';
+                let action = stopSubmit('login', {_error: errorMessage});
+                dispatch(action)
             }
         })
 }

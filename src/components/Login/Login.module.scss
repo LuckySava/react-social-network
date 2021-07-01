@@ -34,3 +34,9 @@
         transition: .3s;
     }
 }
+
+.form_error {
+    border: 2px solid tomato;
+    padding: 10px;
+    color: rgb(131, 8, 8);
+}
