@@ -13,16 +13,6 @@ const MyPosts = (props) => {
 
     let postsElements = props.posts.map(item => <Post message={item.message} likeCounter={item.likesCounter} />);
 
-    // let addPostsText = React.createRef();
-
-    // let addPost = () => {
-    //     props.addPost();
-    // }
-
-    // let onPostChange = () => {
-    //     let text = addPostsText.current.value;
-    //     props.updatePostMessage(text)
-    // }
 
     const sendPostMessage = (formData) => {
         props.addPost(formData.postNewMessage)
@@ -32,13 +22,6 @@ const MyPosts = (props) => {
         <div>
             <h3>My Posts</h3>
             <div className={s.new_post}>
-                {/* <textarea
-                onChange={onPostChange}
-                value={props.newPostText}
-                ref={addPostsText} name="" id="" cols="30" rows="10"></textarea>
-                <p>
-                    <button onClick={addPost}>Add Post</button>
-                </p> */}
                 <PostMessageFormRedux onSubmit={sendPostMessage} />
             </div>
 

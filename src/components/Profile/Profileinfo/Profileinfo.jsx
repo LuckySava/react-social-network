@@ -5,6 +5,8 @@ import ProfileStatus from './ProfileStatus';
 
 const Profileinfo = (props) => {
 
+    console.log('Props Profile Info', props);
+
     if (!props.profile) {
         return <Preloader />
     }

@@ -13,6 +13,7 @@ const ACTIONS = {
     'setAuthUserData': 'SET-USER-DATA',
     'isFollowFetching' : 'IS-FOLLOW-FETCHING',
     'getStatus': 'GET-STATUS',
+    'setInitialized': 'SET-INITIALIZED'
 }
 
 export default ACTIONS;
