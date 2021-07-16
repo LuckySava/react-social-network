@@ -2,6 +2,7 @@ import Preloader from '../../Common/Preloader/preloader';
 import defaultImg from '../../../assets/images/avatar.png'
 import s from './Profileinfo.module.scss';
 import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './profileStatusWhithHooks';
 
 const Profileinfo = (props) => {
 
@@ -22,7 +23,8 @@ const Profileinfo = (props) => {
                 <img className={s.user_img} src={props.profile.photos.large ? props.profile.photos.large : defaultImg} alt="" />
                 <div className={s.profile_info}>
                     <h2>{props.profile.fullName}</h2>
-                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                    <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                
                 </div>
             </div>
 
