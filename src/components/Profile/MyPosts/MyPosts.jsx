@@ -9,7 +9,10 @@ const maxLengthCreator10 = maxLengthCreator(10);
 
 const MyPosts = React.memo(props => {
 
-    let postsElements = props.posts.map(item => <Post message={item.message} likeCounter={item.likesCounter} />);
+    let postsElements = 
+    {...props.posts}
+    .reverse()
+    .map(item => <Post message={item.message} likeCounter={item.likesCounter} />);
 
     const sendPostMessage = (formData) => {
         props.addPost(formData.postNewMessage)

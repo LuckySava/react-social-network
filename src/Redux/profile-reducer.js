@@ -58,6 +58,13 @@ const profileReducer = (state = initialState, action) => {
                 
             }
         }
+        case ACTIONS.deletePost: {
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id != action.postId)
+                
+            }
+        }
 
         default:
             console.log('Error Action Type ProfileReducer');
@@ -72,6 +79,8 @@ export const setUserProfile = (profile) => ({type: ACTIONS.setUserProfile, profi
 export const addPostActionCreator = (newProfilePost) => ({ type: ACTIONS.addPost, newProfilePost });
 export const postChangeActionCreator = (text) => ({type: ACTIONS.updatePost,newText: text});
 export const setStatus = (status) => ({type: ACTIONS.getStatus, status: status});
+export const deletePost = (postId) => ({type: ACTIONS.deletePost, postId });
+
 
 // thunk creator
 

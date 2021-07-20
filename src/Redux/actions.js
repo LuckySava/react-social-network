@@ -13,7 +13,8 @@ const ACTIONS = {
     'setAuthUserData': 'SET-USER-DATA',
     'isFollowFetching' : 'IS-FOLLOW-FETCHING',
     'getStatus': 'GET-STATUS',
-    'setInitialized': 'SET-INITIALIZED'
+    'setInitialized': 'SET-INITIALIZED',
+    'deletePost' : 'DELETE-POST'
 }
 
 export default ACTIONS;
