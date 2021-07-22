@@ -86,54 +86,51 @@ export const checkFollowingInProgress = (isFetching, userId) => ({ type: ACTION.
 
 // Create Thunk with ThunkCreator
 export const getUser = (currentPage, pageSize) => {
-    return (dispatch) => {
-        dispatch(checkIsFetching(true))
+    return async (dispatch) => {
+        dispatch(checkIsFetching(true));
+        dispatch(setCurrentPage(pageSize));
 
-        userAPI.getUsers(currentPage, pageSize)
-            .then(data => {
+        let data = await userAPI.getUsers(currentPage, pageSize)
 
-                dispatch(setUsers(data.items));
 
-                let userTotalCount = data.totalCount / 100;
-                dispatch(setUsersCout(userTotalCount));
+        dispatch(setUsers(data.items));
 
-                dispatch(checkIsFetching(false))
+        let userTotalCount = data.totalCount / 100;
+        dispatch(setUsersCout(userTotalCount));
+        dispatch(checkIsFetching(false))
+        dispatch(setCurrentPage(currentPage));
 
-                dispatch(setCurrentPage(currentPage));
-
-            })
     }
 }
 
 export const unfollow = (userId) => {
-    return (dispatch) => {
-        dispatch(checkFollowingInProgress(true,userId))
+    return async (dispatch) => {
+        dispatch(checkFollowingInProgress(true, userId))
 
-        userAPI.unfollowUser(userId)
-        .then(response => {
-            if(response.data.resultCode == 0) {
-                dispatch(unFollowSuccess(userId))
-            }
+        let response = await userAPI.unfollowUser(userId)
 
-            dispatch(checkFollowingInProgress(false, userId));
+        if (response.data.resultCode == 0) {
+            dispatch(unFollowSuccess(userId))
+        }
 
-        })
+        dispatch(checkFollowingInProgress(false, userId));
+
     }
 }
 
 export const follow = (userId) => {
-    return (dispatch) => {
-        dispatch(checkFollowingInProgress(true,userId))
+    return async (dispatch) => {
+        dispatch(checkFollowingInProgress(true, userId))
 
-        userAPI.followUser(userId)
-        .then(response => {
-            if(response.data.resultCode == 0) {
-                dispatch(followSuccess(userId))
-            }
+        let response = await userAPI.followUser(userId)
 
-            dispatch(checkFollowingInProgress(false, userId));
+        if (response.data.resultCode == 0) {
+            dispatch(followSuccess(userId))
+        }
 
-        })
+        dispatch(checkFollowingInProgress(false, userId));
+
+
     }
 }
 

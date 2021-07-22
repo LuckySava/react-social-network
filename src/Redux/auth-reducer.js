@@ -1,6 +1,6 @@
 import { authAPI } from '../api/api';
 import ACTION from './actions';
-import {stopSubmit} from 'redux-form';
+import { stopSubmit } from 'redux-form';
 
 console.log('ACTION', ACTION.setAuthUserData);
 
@@ -31,44 +31,40 @@ export let setUserData = (id, email, login, isAuth) => ({ type: ACTION.setAuthUs
 
 // thunk creator
 
-export const getAuthUserData = () => (dispatch) => {
+export const getAuthUserData = () => async (dispatch) => {
 
-    return authAPI.me()
-        .then(response => {
+    let response = await authAPI.me();
 
-            if (response.data.resultCode === 0) {
-                let { id, email, login } = response.data.data;
-                dispatch(setUserData(id, email, login, true));
-            }
-
-        })
+    if (response.data.resultCode === 0) {
+        let { id, email, login } = response.data.data;
+        dispatch(setUserData(id, email, login, true));
+    }
 }
 
-export const login = (email,password,rememberMe,) => (dispatch) => {
+export const login = (email, password, rememberMe,) => async (dispatch) => {
 
 
-    return authAPI.login(email,password,rememberMe)
-        .then(response => {
+    let response = await authAPI.login(email, password, rememberMe);
 
-            if (response.data.resultCode === 0) {
-                dispatch(getAuthUserData())
-            } else {
-                let errorMessage = response.data.messages.length > 0 ? response.data.messages[0] : 'Email is not valid';
-                let action = stopSubmit('login', {_error: errorMessage});
-                dispatch(action)
-            }
-        })
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData())
+    } else {
+        let errorMessage = response.data.messages.length > 0 ? response.data.messages[0] : 'Email is not valid';
+        let action = stopSubmit('login', { _error: errorMessage });
+        dispatch(action)
+    }
+
 }
 
-export const logout = () => (dispatch) => {
+export const logout = () => async (dispatch) => {
 
-    return authAPI.logout()
-        .then(response => {
+    let response = await authAPI.logout()
 
-            if (response.data.resultCode === 0) {
-                dispatch(setUserData(null, null, null, false));
-            }
-        })
+
+    if (response.data.resultCode === 0) {
+        dispatch(setUserData(null, null, null, false));
+    }
+
 }
 
 

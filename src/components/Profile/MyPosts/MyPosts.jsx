@@ -10,7 +10,7 @@ const maxLengthCreator10 = maxLengthCreator(10);
 const MyPosts = React.memo(props => {
 
     let postsElements = 
-    {...props.posts}
+    [...props.posts]
     .reverse()
     .map(item => <Post message={item.message} likeCounter={item.likesCounter} />);
 
