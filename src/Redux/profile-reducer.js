@@ -67,7 +67,6 @@ const profileReducer = (state = initialState, action) => {
         }
 
         default:
-            console.log('Error Action Type ProfileReducer');
             return state;
     }
 

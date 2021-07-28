@@ -28,9 +28,11 @@ export const userAPI = {
 
 export const profileAPI = {
     getProfile(userId) {
+        console.log('USER GET PROFILE', userId);
         return instance.get(`profile/${userId}`)
     },
     getStatus(userId) {
+        console.log('USER GET STATUS', userId);
         return instance.get(`profile/status/${userId}`)
     },
     updateStatus(status){ 
